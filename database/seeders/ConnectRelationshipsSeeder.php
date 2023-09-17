@@ -30,7 +30,6 @@ class ConnectRelationshipsSeeder extends Seeder
         $roleInstructor = config('roles.models.role')::where('name', '=', 'Instructor')->first();
 
 
-        $userAdmin = User::where('email','admin@admin.com')->first();
-        $userAdmin->attachRole($roleAdmin);
+
     }
 }
