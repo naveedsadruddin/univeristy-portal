@@ -23,7 +23,7 @@ php artisan key:generate,
 
 then
 npm install,                
-      
+
 then
 php artisan serve,                  
 
