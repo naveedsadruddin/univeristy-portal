@@ -25,7 +25,10 @@ then
 npm install,                
 
 then
-php artisan serve,                  
+php artisan serve,   
+
+then 
+npm run dev,
 
 Now you have all the needed users 
 admin user:
