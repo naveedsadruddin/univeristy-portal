@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Services\CourseService;
 use App\Http\Services\EnrollmentService;
 use App\Http\Services\RouterService;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
@@ -40,10 +42,11 @@ class EnrollmentController extends Controller
         $data = $request->all();
         $message = 'Record successfully created.';
         $error = false;
-
         try {
             \DB::beginTransaction();
-                $this->service->create($data , $id);
+                if(!Enrollment::where('user_id', Auth::user()->id)->where('course_id',$id)->get()){
+                    $this->service->create($data , $id);
+                }
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollback();
