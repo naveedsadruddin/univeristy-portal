@@ -51,6 +51,7 @@ class UsersTableSeeder extends Seeder
 
             $newUser->attachRole($userRole);
         }
+        if (config('roles.models.defaultUser')::where('email', '=', 'student@student.com')->first() === null) {
         $newUser1 = config('roles.models.defaultUser')::create([
             'name'     => 'student',
             'email'    => 'student@student.com',
@@ -58,7 +59,8 @@ class UsersTableSeeder extends Seeder
             'status' => 1,
         ]);
         $newUser1->attachRole($studentRole);
-
+    }
+    if (config('roles.models.defaultUser')::where('email', '=', 'instructor@instructor.com')->first() === null) {
         $newUser2 = config('roles.models.defaultUser')::create([
             'name'     => 'instructor',
             'email'    => 'instructor@instructor.com',
@@ -66,6 +68,7 @@ class UsersTableSeeder extends Seeder
             'status' => 1,
         ]);
         $newUser2->attachRole($instructorRole);
+    }
         $userAdmin = User::where('email','admin@admin.com')->first();
         $userAdmin->attachRole($adminRole);
     }

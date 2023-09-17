@@ -43,3 +43,14 @@ email:
 student@student.com
 password: password
 
+New user created have role of students 
+
+Changing role of user can be done by admin on user link on side bar by editing user and assigning role
+
+Admin and Instructor can create courses
+
+New Can join the availible courses by enrolling into them and can also see the courses they are enrolled in
+
+Instructors can create Courses and see who are enrolled in their courses
+
+First step will be creating courses then studenrs and enroll into them then admin can de enroll them
