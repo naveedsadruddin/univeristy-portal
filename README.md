@@ -1,10 +1,15 @@
 This is univeristy portal where a 
+
 user can enroll and see their enrolled courses,
+
 Instructor can create , edit and delete courses and see enrollements of their courses
+
 Admin can de enroll students , create users , roles , courses and grant user courses and roles
 
 TO install this the minimum php requirement is 8.1
+
 First you need to clone this repository
+
 please copy .env.example and rename it to .env
 
 change database name in .env as your preferred name in variable DB_DATABASE and do database configration as asked
