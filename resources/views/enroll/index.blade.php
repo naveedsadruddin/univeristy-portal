@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h2>{{$entity}}</h2>
+    <h2>{{"Enrollments"}}</h2>
 
     <x-add-new-button :entity="$entity" />
     <div class="card shadow mb-4">

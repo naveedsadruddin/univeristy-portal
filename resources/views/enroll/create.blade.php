@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-<h2>{{$entity}}</h2>
+<h2>{{"Enroll yourself in course"}}</h2>
     <x-add-new-button :entity="$entity" />
     <div class="card shadow mb-4">
         <x-records-count :total="$records->total()" />
