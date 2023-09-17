@@ -10,17 +10,17 @@ please copy .env.example and rename it to .env
 change database name in .env as your preferred name in variable DB_DATABASE and do database configration as asked
 
 Then 
-composer install
+composer install,            
 then
-Php artisan migrate
+Php artisan migrate,                   
 then
-php artisan db:seed
+php artisan db:seed,                    
 then 
-php artisan key:generate
+php artisan key:generate,                     
 then
-npm install
+npm install,                      
 then
-php artisan serve
+php artisan serve,                  
 
 Now you have all the needed users 
 admin user:
