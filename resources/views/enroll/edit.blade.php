@@ -26,7 +26,7 @@
                     <div class="form-group col-md-4 required">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control form-control-sm @error('name') is-invalid @enderror"
-                        id="name" placeholder="Name" value="{{ old('name') ?? $record->name }}" required />
+                            id="name" placeholder="Name" value="{{ old('name') ?? $record->name }}" required />
                         <x-form-error key="name" />
                     </div>
 

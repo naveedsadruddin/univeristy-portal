@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ConnectRelationshipsSeeder extends Seeder
@@ -25,5 +26,11 @@ class ConnectRelationshipsSeeder extends Seeder
         foreach ($permissions as $permission) {
             $roleAdmin->attachPermission($permission);
         }
+        $roleStudent = config('roles.models.role')::where('name', '=', 'Student')->first();
+        $roleInstructor = config('roles.models.role')::where('name', '=', 'Instructor')->first();
+
+
+        $userAdmin = User::where('email','admin@admin.com')->first();
+        $userAdmin->attachRole($roleAdmin);
     }
 }

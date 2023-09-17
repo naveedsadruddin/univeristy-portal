@@ -35,9 +35,19 @@ class RolesTableSeeder extends Seeder
                 'slug'        => 'unverified',
                 'description' => 'Unverified Role',
                 'level'       => 0,
+            ], [
+                'name'        => 'Student',
+                'slug'        => 'Student',
+                'description' => 'Student Role',
+                'level'       => 2,
+            ], [
+                'name'        => 'Instructor',
+                'slug'        => 'Instructor',
+                'description' => 'Instructor Role',
+                'level'       => 3,
             ],
         ];
-
+        // Instructor
         /*
          * Add Role Items
          *

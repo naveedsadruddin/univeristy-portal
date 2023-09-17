@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
 <h2>{{$entity}}</h2>
-    <x-add-new-btn :entity="$entity" />
+    <x-add-new-button :entity="$entity" />
     <div class="card shadow mb-4">
         <x-records-count :total="$records->total()" />
         <div class="card-body">
@@ -27,7 +27,7 @@
                         <th>Start date</th>
                         <th>End date</th>
                         <th>Instructor Name</th>
-                        @permission('courses.edit|courses.delete')
+                        @permission('users.edit|users.delete')
                         <th>Action</th>
                         @endpermission
                     </tr>
@@ -49,11 +49,14 @@
                         </td>
 
                         <td>
-                            <div class="btn-group">
-                                <x-edit-btn :id="$record->id" :entity="Str::singular($entity)" />
-                                <x-delete-btn :id="$record->id" :entity="Str::singular($entity)" />
-                            </div>
+                           <form action="/enroll/{{$record->id}}" method="post">
+                            @csrf
+                            @php
+                                    $title = 'enroll';
+                                @endphp
+                                <x-save-button :title='$title' />
 
+                            </form>
                         </td>
                     </tr>
                     @endforeach

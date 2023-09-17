@@ -1,5 +1,6 @@
-<a 
-    href="{{ route(str_replace('-', '.', (isset($explicit) && $explicit ? $explicit : $entity)).'.create') }}" 
-    title="Add New Record" class="btn btn-round btn-{{ $btnType ?? 'primary'}} float-right">
-        <i class="fa fa-plus"></i> {{ $title ?? 'Add New'}}
-</a>
+
+<div class="col text-right mb-2">
+    <a href="{{ route($entity.'.create') }}" class="btn btn-round btn-primary btn-sm text-right"><i class="fa fa-plus"></i> Add New</a>
+</div>
+
+

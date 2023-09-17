@@ -26,7 +26,7 @@ class CourseEdit extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'sometimes',
             'start_date' => 'required',
             'end_date' => 'required',
         ];

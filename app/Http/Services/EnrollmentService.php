@@ -1,43 +1,37 @@
 <?php namespace App\Http\Services;
 
-use App\Models\Course;
-use App\Models\User;
+use App\Models\Enrollment;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use jeremykenedy\LaravelRoles\Models\Role;
 
-class CourseService {
+class EnrollmentService {
 
     protected $model , $roleSevice;
     public function __construct()
     {
-        $this->model = new Course();
-        $this->roleSevice = new RoleService();
+        $this->model = new Enrollment();
     }
 
-    public function list($relations = array(), $params = array())
+    public function list($relations = array())
     {
-        extract($params);
         $pagination = session()->get('pagination') ?? 10;
         $records = $this->model;
+
         return $records->with($relations)->paginate($pagination);
     }
-
 
     public function fetch($id, $relations = array())
     {
         return $this->model->with($relations)->findOrFail($id);
     }
 
-    public function create($data)
+    public function create($data , $id)
     {
         extract($data);
         $record = $this->model;
-        $record->title = $title;
-        $record->description = $description;
-        $record->user_id = $user_id;
-        $record->start_date = $start_date;
-        $record->end_date = $end_date;
+        $record->user_id = Auth::user()->id;
+        $record->course_id = $id;
+        $record->date = Carbon::now()->toDateString();
         $record->save();
         return $record;
     }
@@ -61,12 +55,10 @@ class CourseService {
         return $record->delete();
     }
 
-    public function listUserCourses($relations = array()){
-
+    public function listUserEnrollments($relations = array()){
         $pagination = session()->get('pagination') ?? 10;
         $records = $this->model;
 
-        return $records->where('user_id', Auth::user()->id)->with($relations)->paginate($pagination);
+        return $records->where('user_id',Auth::user()->id)->with($relations)->paginate($pagination);
     }
-
 }

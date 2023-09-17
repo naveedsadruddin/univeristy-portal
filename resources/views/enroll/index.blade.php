@@ -13,48 +13,43 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-<h2>{{$entity}}</h2>
-    <x-add-new-btn :entity="$entity" />
+    <h2>{{$entity}}</h2>
+
+    <x-add-new-button :entity="$entity" />
     <div class="card shadow mb-4">
         <x-records-count :total="$records->total()" />
+
         <div class="card-body">
-            <table id="dataTable" class="table table-bordered table-sm" width="100%" cellspacing="0">
+            <table id="dataTable" class="table table-bordered table-sm table-hover">
                 <thead>
                     <tr>
-                        <th>S No</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                        <th>Instructor Name</th>
-                        @permission('courses.edit|courses.delete')
+                        <th class="text-center">S No.</th>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>date</th>
                         <th>Action</th>
-                        @endpermission
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($records as $key => $record)
                     <tr>
                         <td class="text-center">{{ $records->firstItem() + $key }}</td>
-                        <td>{{ $record->title }}</td>
-                        <td>{{ $record->description }}</td>
-                        <td >
-                            {{ $record->start_date }}
-                        </td>
-                        <td >
-                            {{ $record->end_date }}
-                        </td>
-                        <td >
-                            {{ $record->user->name }}
-                        </td>
-
+                        <td>{{ $record->user->name }}</td>
+                        <td>{{ $record->course->title }}</td>
+                        <td>{{ $record->date ?? '--' }}</td>
+                        @role('admin')
                         <td>
-                            <div class="btn-group">
-                                <x-edit-btn :id="$record->id" :entity="Str::singular($entity)" />
-                                <x-delete-btn :id="$record->id" :entity="Str::singular($entity)" />
-                            </div>
+                            <form action="/deenroll/{{$record->id}}" method="post">
+                                @csrf
+                                @php
+                                    $title = 'De enroll';
+                                @endphp
+                                <x-save-button :title='$title' />
 
+                            </form>
                         </td>
+                        @endrole
+
                     </tr>
                     @endforeach
 
@@ -75,3 +70,11 @@
 
 @endsection
 
+@push('extra-scripts')
+<!-- Page level plugins -->
+<script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- page script -->
+<script src="{{ asset('admin/scripts/init-advanced-datatable.js') }}"></script>
+@endpush

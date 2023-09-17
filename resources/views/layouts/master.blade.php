@@ -49,20 +49,15 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route("dashboard")}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
             <hr class="sidebar-divider">
 
+            @role('admin')
             <li class="nav-item active">
                 <a class="nav-link" href="/courses">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Courses</span></a>
             </li>
             <hr class="sidebar-divider">
-
             <li class="nav-item active">
                 <a class="nav-link" href="/users">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -78,12 +73,42 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/enroll">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Enrollment</span></a>
+                    <span>Enrollments</span></a>
             </li>
+            @endrole
+            @role('student')
+            <li class="nav-item active">
+                <a class="nav-link" href="/user/enroll">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Enroll yourself in a course</span></a>
+            </li>
+            <hr class="sidebar-divider">
 
+            <li class="nav-item active">
+                <a class="nav-link" href="/user/enrollments">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>See your enrollments</span></a>
+            </li>
+            @endrole
+            @role('instructor')
+            <li class="nav-item active">
+                <a class="nav-link" href="/user/courses">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>See your courses</span></a>
+            </li>
+            <hr class="sidebar-divider">
 
+            <li class="nav-item active">
+                <a class="nav-link" href="/user/courses/enrollments">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>See your courses enrollments</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            {{-- /user/courses/enrollments --}}
+            @endrole
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -147,18 +172,15 @@
                                 aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
 
-                                        <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
-                                            {{ __('Log Out') }}
-                                        </x-dropdown-link>
-                                    </form>
-                                </a>
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>

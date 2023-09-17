@@ -94,4 +94,15 @@ class CourseController extends Controller
         }
         return $this->routerService->redirect($this->router, $error, $message);
     }
+    public function userCourses(){
+        $entity = $this->entity;
+        $records = $this->service->listUserCourses(['user']);
+
+        return view('courses.index', compact('records', 'entity'));
+    }
+    public function userCourseEnrollments(){
+        $entity = $this->entity;
+        $records = $this->service->listUserCourses(['user', 'enrollments.user']);
+        return view('enroll.course-enrollment', compact('records', 'entity'));
+    }
 }
